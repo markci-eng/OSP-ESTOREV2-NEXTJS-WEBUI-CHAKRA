@@ -10,7 +10,8 @@ async function cacheCoreAssets() {
   const cache = await caches.open(CACHE_NAME);
   return await cache.addAll([
     "/",
-    "/login"
+    "/login",
+    "/video/hero-bg-video.mp4"
   ]);
 }
 
