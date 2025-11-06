@@ -16,7 +16,7 @@
     "motion": "^12.23.24",
     "next": "16.0.0",
     "next-themes": "^0.4.6",
-    "osp-reusable-components-chakra": "file:osp-reusable-components-chakra-0.0.4.tgz",
+    "osp-chakra-reusable-components": "file:osp-chakra-reusable-components-0.0.3.tgz",
     "react": "19.2.0",
     "react-countup": "^6.5.3",
     "react-dom": "19.2.0",

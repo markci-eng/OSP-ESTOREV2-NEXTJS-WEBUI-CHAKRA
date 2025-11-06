@@ -12,6 +12,18 @@ const Navbar = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+
+  const handleLogin = () => {
+    const savedUser = localStorage.getItem("user_data");
+    const user = savedUser ? JSON.parse(savedUser) : null;
+
+    if(user) {
+      router.push("/plan-management");
+    } else {
+      router.push("/login");
+    }
+  }
+
   return (
     <>
       <HStack
@@ -90,7 +102,7 @@ const Navbar = () => {
             size={24}
             onClick={() => setCartOpen(true)}
           />
-          <PrimaryMdButton>LOG IN</PrimaryMdButton>
+          <PrimaryMdButton onClick={handleLogin}>LOG IN</PrimaryMdButton>
         </HStack>
       </HStack>
       <ShoppingCart open={cartOpen} onClose={() => setCartOpen(false)} />
