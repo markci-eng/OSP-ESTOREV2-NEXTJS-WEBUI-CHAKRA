@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import {ReinstatementPage} from "osp-chakra-reusable-components"
-import RIPage from "./RIPage";
+import RIPage from "./RIPage"
+// import { RIPage } from "osp-chakra-reusable-components";
 
 interface PhLapsedPlan {
   lpaNo: string;
@@ -119,9 +119,8 @@ export default function Reinstatement() {
     ]);
 
     return (
-        <Box mt={"150px"}>
+        <Box mt={"200px"}>
             <RIPage initialPlans={lapsedPlans} onSubmit={() => {}}/>
-            {/* <ReinstatementPage initialPlans={lapsedPlans} onSubmit={(val : any) => {setCheckedPlans(val);}}/> */}
         </Box>
     )
 }

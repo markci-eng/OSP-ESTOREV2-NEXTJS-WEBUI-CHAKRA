@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const noLayoutRoutes = ["/login"];
+  const noLayoutRoutes = [""];
 
   const hideLayout = noLayoutRoutes.includes(pathname);
   

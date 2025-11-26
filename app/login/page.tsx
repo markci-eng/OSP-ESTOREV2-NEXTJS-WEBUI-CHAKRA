@@ -1,7 +1,9 @@
 "use client";
-import {LoginPage} from "osp-chakra-reusable-components";
+import { LoginPage } from "osp-chakra-reusable-components";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Box, IconButton, Text } from "@chakra-ui/react";
+import { LuArrowLeft } from "react-icons/lu";
 
 interface ApiResponse {
   id: string;
@@ -97,7 +99,22 @@ export default function Login(){
         }
     }
 
-    return(
-        <LoginPage onLogin={handleSignIn} onSignUp={handleSignUp}/>
+    return (
+      <>
+        <Box display={{ base: "none", mdDown: "block" }}>
+          <IconButton
+            position="fixed"
+            top={30}
+            left={2}
+            size="lg"
+            variant={"ghost"}
+            zIndex={1000}
+            onClick={() => window.history.back()}
+          >
+            <LuArrowLeft />
+          </IconButton>
+        </Box>
+        <LoginPage onLogin={handleSignIn} onSignUp={handleSignUp} />
+      </>
     );
 }
