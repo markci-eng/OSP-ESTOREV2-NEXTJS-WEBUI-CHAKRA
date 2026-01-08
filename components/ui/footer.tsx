@@ -19,7 +19,8 @@ const Footer = () => {
         <Grid
           templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }}
           gap={8}
-          width="7xl"
+          maxW="7xl"
+          px={2}
         >
           <GridItem colSpan={{ base: 1, md: 2 }}>
             <Flex justify="space-between" align="center">
