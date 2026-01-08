@@ -11,7 +11,15 @@ async function cacheCoreAssets() {
   return await cache.addAll([
     "/",
     "/login",
-    "/video/hero-bg-video.mp4"
+    "/video/hero-bg-video.mp4",
+    "/images/chapel1.jpg",
+    "/images/chapel2.jpg",
+    "/images/chapel3.jpg",
+    "/images/chapel4.jpg",
+    "/images/memorial-park-1.jpg",
+    "/images/memorial-park-2.jpg",
+    "/images/claim-benefits.jpg",
+    "/images/request-service.jpg",
   ]);
 }
 
