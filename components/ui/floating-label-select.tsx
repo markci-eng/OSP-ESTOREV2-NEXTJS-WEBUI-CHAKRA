@@ -67,8 +67,8 @@ export const FloatingLabelSelect = (props: FloatingLabelSelectProps) => {
     <Box pos="relative" w="full" {...rest}>
       <Select.Root
         collection={collection}
-        value={internalValue || undefined}
-        onValueChange={(val) => setInternalValue(val)}
+        // value={internalValue || undefined}
+        // onValueChange={(val) => setInternalValue(val)}
         {...selectProps}
       >
         <Select.HiddenSelect id={id} />

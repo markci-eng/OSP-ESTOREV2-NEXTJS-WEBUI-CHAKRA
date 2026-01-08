@@ -96,7 +96,7 @@ const Navbar = () => {
                       <Link href="/plans">Life Plan</Link>
                     </Menu.Item>
                     <Menu.Item value="memorial-park" fontWeight="semibold">
-                      <Link href="/gardens">Memorial Park</Link>
+                      Memorial Park
                     </Menu.Item>
                   </Menu.Content>
                 </Menu.Positioner>
