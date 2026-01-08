@@ -91,7 +91,7 @@ export default function Login(){
             }
             localStorage.setItem("user_data", JSON.stringify(filteredItems[0]));
             console.log('User signed in:', filteredItems[0]);
-            router.push('/plan-management');
+            router.push('/account-management');
         } catch (error) {
             console.error('Error during sign-in:', error);
         }

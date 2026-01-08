@@ -1,18 +1,18 @@
 "use client";
 
-import React from "react";
-import { Box, Text, Grid, Image } from "@chakra-ui/react";
+import { Box, Grid, Image } from "@chakra-ui/react";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { useRouter } from "next/navigation";
+import { Body, H2, H3 } from "st-peter-ui";
 
 const Services = () => {
   const router = useRouter();
   return (
     <section>
       <Box padding="8">
-        <Text textStyle="3xl" fontWeight="bold" mb="8" textAlign="center">
-          Get instant access to online services
-        </Text>
+        <Box mb={8} textAlign="center">
+          <H2>Get instant access to online services</H2>
+        </Box>
         <Grid
           templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }}
           gap={4}
@@ -23,15 +23,18 @@ const Services = () => {
           <WobbleCard
             containerClassName="col-span-1 lg:col-span-2 h-full bg-gray-200 min-h-[300px] lg:min-h-[300px]"
             className=""
-            onClick={() => router.push("/cab-claim")}
+            onClick={() => router.push("/claims")}
           >
             <Box p={8}>
-              <Text fontWeight="bold">Apply for a Claim Benefits</Text>
-              <Text w={"70%"}>
-                Disclaimer: Not all plans are eligible for benefits. Please
-                check your policy details, or contact a Sales Agent, or visit
-                your branch of account for more information.
-              </Text>
+              <Box mb={4}>
+                <H3>Apply for a Claim Benefits</H3>
+              </Box>
+              <Box maxW="md">
+                <Body>
+                  Please check your policy details, or contact a Sales Agent, or
+                  visit your branch of account for more information.
+                </Body>
+              </Box>
             </Box>
             <Image
               src="/images/services/claim-benefits.jpg"
@@ -52,12 +55,13 @@ const Services = () => {
             onClick={() => router.push("/login")}
           >
             <Box p={8}>
-              <Text fontWeight="bold">Apply for Return of Premium</Text>
-              <Text w={"100%"}>
-                Disclaimer: Not all plans include a Return of Premium benefit.
+              <Box mb={4}>
+                <H3 color="white">Apply for Return of Premium </H3>
+              </Box>
+              <Body color="white">
                 Please check your policy details, contact a Sales Agent, or
                 visit your branch of account for more information.
-              </Text>
+              </Body>
             </Box>
           </WobbleCard>
           <WobbleCard
@@ -65,26 +69,28 @@ const Services = () => {
             onClick={() => router.push("/Transaction")}
           >
             <Box p={8}>
-              <Text fontWeight="bold">Track your request</Text>
-              <Text className="mt-4">
-                Disclaimer: To track your request, please have your reference
-                number ready.
-              </Text>
+              <Box mb={4}>
+                <H3 color="white">Track your request</H3>
+              </Box>
+              <Body color="white">
+                To track your request, please have your reference number ready.
+              </Body>
             </Box>
           </WobbleCard>
           <WobbleCard
             containerClassName="col-span-1 lg:col-span-2 h-full bg-gray-200 min-h-[300px] lg:min-h-[300px]"
-            onClick={() => router.push("/Booking")}
+            onClick={() => router.push("/booking")}
           >
-            <div className="max-w-md">
-              <Box p={8}>
-                <Text fontWeight="bold">Request Service Assistance</Text>
-                <Text className="mt-4">
-                  Disclaimer: To proceed, please have your life plan contact
-                  details ready...
-                </Text>
+            <Box w="full">
+              <Box p={8} w="lg">
+                <Box mb={4}>
+                  <H3>Memorial Service Booking Assistance</H3>
+                </Box>
+                <Body>
+                  To proceed, please have your life plan contact details ready.
+                </Body>
               </Box>
-            </div>
+            </Box>
             <Image
               src="/images/services/request-service.jpg"
               alt="request service"

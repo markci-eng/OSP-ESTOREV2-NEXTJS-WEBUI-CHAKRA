@@ -1,127 +1,38 @@
 "use client";
-import { useState } from "react";
 import { Box } from "@chakra-ui/react";
-import {ReinstatementPage} from "osp-chakra-reusable-components"
-import RIPage from "./RIPage";
-
-interface PhLapsedPlan {
-  lpaNo: string;
-  phName: string;
-  planType: string;
-  mop: string;
-  status: string;
-  totalAmtPayable: string;
-  totalAmtPaid: string;
-  balance: string;
-  instAmt: string;
-  newLpaNo: string;
-  newStatus: string;
-  newTotalAmtPayable: string;
-  newTotalAmtPaid: string;
-  newBalance: string;
-  newInstAmt: string;
-  duedate: string;
-}
+import { ReinstatementPage } from "osp-chakra-reusable-components";
+import { useRouter } from "next/navigation";
+import { Breadcrumb } from "st-peter-ui";
 
 export default function Reinstatement() {
-    const [checkedPlans, setCheckedPlans] = useState<[]>([]);
-    const [lapsedPlans, setPhLapsedPlans] = useState<PhLapsedPlan[]>([
-        { 
-            lpaNo: "L23995024F", 
-            phName: "Juan Dela Cruz", 
-            planType: "St. Anne",
-            mop: "Monthly", 
-            status: "Lapsed", 
-            totalAmtPayable: "60000", 
-            totalAmtPaid: "13200", 
-            balance: "46800", 
-            instAmt: "700", 
-            newLpaNo: "L23000045I",
-            newStatus: "Active",
-            newTotalAmtPayable: "66000",
-            newTotalAmtPaid: "13200",
-            newBalance: "52800",
-            newInstAmt: "1100",
-            duedate: "2023-10-15" 
-        },
-        {
-            lpaNo: "L23956088F", 
-            phName: "Juan Dela Cruz", 
-            planType: "St. Anne",
-            mop: "Quarterly", 
-            status: "Lapsed", 
-            totalAmtPayable: "60000", 
-            totalAmtPaid: "13900", 
-            balance: "45900", 
-            instAmt: "700", 
-            newLpaNo: "L23000375E",
-            newStatus: "Active",
-            newTotalAmtPayable: "66000",
-            newTotalAmtPaid: "13900",
-            newBalance: "51900",
-            newInstAmt: "1100",
-            duedate: "2023-09-20" 
-        },
-        {
-            lpaNo: "L23956088G", 
-            phName: "Juan Dela Cruz", 
-            planType: "St. Anne",
-            mop: "Quarterly", 
-            status: "Lapsed", 
-            totalAmtPayable: "60000", 
-            totalAmtPaid: "13900", 
-            balance: "45900", 
-            instAmt: "700", 
-            newLpaNo: "L23000375E",
-            newStatus: "Active",
-            newTotalAmtPayable: "66000",
-            newTotalAmtPaid: "13900",
-            newBalance: "51900",
-            newInstAmt: "1100",
-            duedate: "2023-09-20" 
-        },
-        {
-            lpaNo: "L23956088H", 
-            phName: "Juan Dela Cruz", 
-            planType: "St. Anne",
-            mop: "Quarterly", 
-            status: "Lapsed", 
-            totalAmtPayable: "60000", 
-            totalAmtPaid: "13900", 
-            balance: "45900", 
-            instAmt: "700", 
-            newLpaNo: "L23000375E",
-            newStatus: "Active",
-            newTotalAmtPayable: "66000",
-            newTotalAmtPaid: "13900",
-            newBalance: "51900",
-            newInstAmt: "1100",
-            duedate: "2023-09-20" 
-        },
-        {
-            lpaNo: "L23956088I", 
-            phName: "Juan Dela Cruz", 
-            planType: "St. Anne",
-            mop: "Quarterly", 
-            status: "Lapsed", 
-            totalAmtPayable: "60000", 
-            totalAmtPaid: "13900", 
-            balance: "45900", 
-            instAmt: "700", 
-            newLpaNo: "L23000375E",
-            newStatus: "Active",
-            newTotalAmtPayable: "66000",
-            newTotalAmtPaid: "13900",
-            newBalance: "51900",
-            newInstAmt: "1100",
-            duedate: "2023-09-20" 
-        }
-    ]);
+  const router = useRouter();
 
-    return (
-        <Box mt={"150px"}>
-            <RIPage initialPlans={lapsedPlans} onSubmit={() => {}}/>
-            {/* <ReinstatementPage initialPlans={lapsedPlans} onSubmit={(val : any) => {setCheckedPlans(val);}}/> */}
-        </Box>
-    )
+  const breadcrumbItems = [
+    {
+      label: "Home",
+      href: "/",
+    },
+
+    {
+      label: "Reinstatement",
+      href: "/reinstatement",
+    },
+  ];
+
+  return (
+    <Box pt={"120px"} maxW={"7xl"} margin={"auto"} px={0}>
+      <Breadcrumb items={breadcrumbItems} />
+      <ReinstatementPage
+        onSuccess={(transactionId, transactionAmt) => {
+          alert(
+            "Reinstatement Application Submitted Successfully! \n Transaction No: " +
+              transactionId +
+              "\n Transaction Amount: ₱ " +
+              transactionAmt.toLocaleString()
+          );
+          router.push("/success");
+        }}
+      />
+    </Box>
+  );
 }

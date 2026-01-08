@@ -1,7 +1,6 @@
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Carousel } from "@/components/ui/carousel";
-import { PrimaryMdButton } from "st-peter-ui";
+import { Body, DynamicButton, H2 } from "st-peter-ui";
 
 const Location = () => {
   const slideData = [
@@ -27,53 +26,64 @@ const Location = () => {
     },
   ];
   return (
-    <section>
-      <Box padding="8">
+    <Box
+      as="section"
+      mt={8}
+      py={{ base: 8, md: 12 }}
+      px={{ base: 4, md: 8 }}
+      bg="gray.50"
+    >
+      <Box maxW="7xl" w="full" m="auto">
         <Flex
-          flexDir={{ base: "column", md: "row" }}
-          gap={8}
-          p={8}
-          m="auto"
+          flexDir={{ base: "column", lg: "row" }}
+          gap={{ base: 6, md: 8 }}
           align="center"
           w="full"
         >
-          <Box position="relative" overflow="hidden" w="full" h="full" py={14}>
+          <Box position="relative" overflow="hidden" w="full">
             <Carousel slides={slideData} />
           </Box>
 
           <Box
-            p={{ base: 4, md: 8 }}
+            p={{ base: 4, md: 6 }}
             display="flex"
             flexDir="column"
             justifyContent="center"
-            w="full"
+            w={{ base: "full", md: "lg" }}
           >
-            <Flex justify="flex-start" w="full" m="auto">
-              <Text fontSize="3xl" fontWeight="bold">
-                We're Near{" "}
-                <Text as="span" color="#177D54">
-                  You
-                </Text>
-              </Text>
+            <Flex
+              flexDirection={{ base: "column", md: "column" }}
+              w="full"
+              m="auto"
+            >
+              <Box mb={4}>
+                <H2>
+                  We&apos;re Near{" "}
+                  <Box as="span" color="green.600">
+                    {" "}
+                    You
+                  </Box>
+                </H2>
+              </Box>
+
+              <Box w={{ base: "100%", md: "md" }}>
+                <Body>
+                  Visit us at our convenient location, easily accessible for all
+                  your needs. Our chapel is situated in the heart of the city,
+                  providing a peaceful and welcoming environment for families
+                  and guests. Whether you’re planning a visit or need
+                  assistance, our friendly staff is always ready to help.
+                </Body>
+              </Box>
             </Flex>
 
-            <Text w={{ base: "fit-content", md: "lg" }} textAlign="start">
-              Visit us at our convenient location, easily accessible for all
-              your needs. Our chapel is situated in the heart of the city,
-              providing a peaceful and welcoming environment for families and
-              guests. Whether you’re planning a visit or need assistance, our
-              friendly staff is always ready to help.
-            </Text>
-
             <Box mt={8}>
-              <PrimaryMdButton w={{ base: "full", md: "fit-content" }}>
-                Go to Map
-              </PrimaryMdButton>
+              <DynamicButton label="Go to Map" />
             </Box>
           </Box>
         </Flex>
       </Box>
-    </section>
+    </Box>
   );
 };
 
