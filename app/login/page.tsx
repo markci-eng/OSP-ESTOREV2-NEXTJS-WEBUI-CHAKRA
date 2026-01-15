@@ -1,5 +1,6 @@
 "use client";
-import {LoginPage} from "osp-chakra-reusable-components";
+// import {LoginPage} from "osp-chakra-reusable-components";
+import { LoginPage } from "./LoginPage";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -91,7 +92,7 @@ export default function Login(){
             }
             localStorage.setItem("user_data", JSON.stringify(filteredItems[0]));
             console.log('User signed in:', filteredItems[0]);
-            router.push('/account-management');
+            router.push('/plan-management');
         } catch (error) {
             console.error('Error during sign-in:', error);
         }

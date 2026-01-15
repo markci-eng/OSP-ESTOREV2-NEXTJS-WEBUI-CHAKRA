@@ -9,8 +9,6 @@ let requestQueueProcessed = false;
 async function cacheCoreAssets() {
   const cache = await caches.open(CACHE_NAME);
   return await cache.addAll([
-    "/",
-    "/login",
     "/video/hero-bg-video.mp4",
     "/images/chapel1.jpg",
     "/images/chapel2.jpg",
