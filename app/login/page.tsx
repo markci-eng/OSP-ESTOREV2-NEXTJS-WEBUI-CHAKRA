@@ -1,6 +1,6 @@
 "use client";
 // import {LoginPage} from "osp-chakra-reusable-components";
-import { LoginPage } from "./loginpage";
+import { LoginPage } from "./LoginPageComponent";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
