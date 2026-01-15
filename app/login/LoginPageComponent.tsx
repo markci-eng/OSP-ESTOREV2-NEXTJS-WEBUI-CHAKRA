@@ -166,13 +166,13 @@ export function LoginPage({
                     Forgot your password?
                   </Link>
                   <LoginFlexButton type="submit" />
-                  <SecondaryMdFlexButton
+                  {/* <SecondaryMdFlexButton
                     width={"full"}
                     borderColor="white"
                     onClick={() => router.push("/login#biometrics")}
                   >
                     <LuFingerprint />Log In with Biometrics
-                  </SecondaryMdFlexButton>
+                  </SecondaryMdFlexButton> */}
 
                   <HStack my={3}>
                     <Separator flex="1" />
