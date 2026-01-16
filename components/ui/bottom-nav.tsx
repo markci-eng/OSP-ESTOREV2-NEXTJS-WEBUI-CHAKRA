@@ -212,7 +212,10 @@ const BottomNav = () => {
         </Box>
 
         <Box p={4}>
-          <LoginButton onClick={() => router.push("/login")} />
+          <LoginButton onClick={() => { 
+            onClose();
+            router.push("/login");
+          }} />
         </Box>
       </Box>
     </Box>
