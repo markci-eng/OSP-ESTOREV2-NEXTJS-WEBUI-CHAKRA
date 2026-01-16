@@ -14,6 +14,7 @@ import {
   useBreakpointValue,
   Separator,
   Icon,
+  Input,
 } from "@chakra-ui/react";
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -114,6 +115,12 @@ export function LoginPage({
         bg="white"
         overflow="hidden"
       >
+        <input
+          type="file"
+          accept="image/*"
+          capture="environment"
+        />
+
         <AnimatePresence mode="wait">
           {!isSignUp ? (
             <MotionFlex
