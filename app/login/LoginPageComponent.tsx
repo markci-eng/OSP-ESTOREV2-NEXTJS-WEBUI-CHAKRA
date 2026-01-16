@@ -115,12 +115,6 @@ export function LoginPage({
         bg="white"
         overflow="hidden"
       >
-        <input
-          type="file"
-          accept="image/*"
-          capture="environment"
-        />
-
         <AnimatePresence mode="wait">
           {!isSignUp ? (
             <MotionFlex
