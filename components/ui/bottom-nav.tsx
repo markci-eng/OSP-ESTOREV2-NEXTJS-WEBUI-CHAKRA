@@ -207,6 +207,15 @@ const BottomNav = () => {
                   My Plans
                 </Text>
               </Link>
+              <Link href="/mobile-features" onClick={onClose} aria-label="Mobile Features">
+                <Text
+                  fontSize="sm"
+                  color="gray.600"
+                  _hover={{ color: "green.600" }}
+                >
+                  Mobile Features
+                </Text>
+              </Link>
             </Box>
           </Box>
         </Box>
