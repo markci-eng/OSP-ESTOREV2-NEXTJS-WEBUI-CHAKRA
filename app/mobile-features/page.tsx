@@ -5,10 +5,10 @@ import { Body, Box, H3, PrimaryMdFlexButton } from "st-peter-ui";
 const getLocation = () => {
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      console.log(pos.coords.latitude, pos.coords.longitude);
+      alert(`Latitude: ${pos.coords.latitude}, Longitude: ${pos.coords.longitude}`);
     },
     (err) => {
-      console.error(err.message);
+      alert(err.message);
     }
   );
 };
