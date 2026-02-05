@@ -27,11 +27,6 @@ export default function manifest(): MetadataRoute.Manifest {
         "type": "image/png",
         "sizes": "512x512"
       },
-      {
-        src: '/images/Logostpeter.png',
-        sizes: '253x53',
-        type: 'image/png',
-      },
     ],
   }
 }
