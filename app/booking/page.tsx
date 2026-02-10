@@ -13,7 +13,7 @@ const page = () => {
       maxW="7xl"
       mx="auto"
     >
-      <BookingForm homeLink="/" trackMyRequestLink="/transaction/" />
+      <BookingForm />
     </Flex>
   );
 };
