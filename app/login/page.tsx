@@ -14,21 +14,22 @@ interface ApiResponse {
   password: string;
 }
 
-function base64ToUint8Array(base64: string): Uint8Array {
-  const padding = '='.repeat((4 - (base64.length % 4)) % 4);
-  const base64Fixed = (base64 + padding).replace(/-/g, '+').replace(/_/g, '/');
-  const rawData = atob(base64Fixed);
-  const output = new Uint8Array(rawData.length);
-  for (let i = 0; i < rawData.length; ++i) {
-    output[i] = rawData.charCodeAt(i);
-  }
-  return output;
+function base64UrlToUint8Array(base64UrlString: string) {
+    const padding = '='.repeat((4 - (base64UrlString.length % 4)) % 4);
+    const base64 = (base64UrlString + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const buffer = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; i++) {
+        buffer[i] = rawData.charCodeAt(i);
+    }
+    return buffer;
 }
 
 export default function Login(){
     const router = useRouter();
-    const [users, setUsers] = useState<ApiResponse | null>(null);
-    const [rawId, setRawId] = useState(null);
+    const [users, setUsers] = useState<ApiResponse[] | null>(null);
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch("/api/users");
@@ -36,19 +37,23 @@ export default function Login(){
                 throw new Error("Failed to fetch data");
             }
 
-            const result: ApiResponse = await response.json();
+            const result: ApiResponse[] = await response.json();
             setUsers(result);
 
-            if (rawId == null) return;
-
+            const storedCred = localStorage.getItem("webauthn_response");
+            if(!storedCred) return;
+            const parsedCred = JSON.parse(storedCred);
+            console.log("Parsed Credential:", parsedCred.rawId);
             const data = await navigator.credentials.get({
                 publicKey:{
-                    challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6]),   
-                    allowCredentials: [{type: "public-key", id: rawId}]
+                    challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8]),   
+                    allowCredentials: [{type: "public-key", id: base64UrlToUint8Array(parsedCred.rawId)}],
+                    rpId: location.hostname
                 }
             });
             
-            console.log(data)
+            console.log("dataaaa", data)
+            router.push('/plan-management');
         };
 
         fetchData();
@@ -112,6 +117,8 @@ export default function Login(){
                     { type: "public-key", alg: -257 },
                 ]
             } })
+
+            localStorage.setItem("webauthn_response", JSON.stringify(data));
             console.log(data)
         //Validate email and password
         try {
