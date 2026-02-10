@@ -14,10 +14,21 @@ interface ApiResponse {
   password: string;
 }
 
+function base64ToUint8Array(base64: string): Uint8Array {
+  const padding = '='.repeat((4 - (base64.length % 4)) % 4);
+  const base64Fixed = (base64 + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = atob(base64Fixed);
+  const output = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    output[i] = rawData.charCodeAt(i);
+  }
+  return output;
+}
+
 export default function Login(){
     const router = useRouter();
     const [users, setUsers] = useState<ApiResponse | null>(null);
-    const [rawId, setRawId] = useState<Uint8Array | null>(null);
+    const [rawId, setRawId] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch("/api/users");
@@ -28,12 +39,16 @@ export default function Login(){
             const result: ApiResponse = await response.json();
             setUsers(result);
 
+            if (rawId == null) return;
+
             const data = await navigator.credentials.get({
-            publicKey:{
-                challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6]),
-                allowCredentials: [{type: "public-key", id: rawId ?? new Uint8Array([0])}]
-            }
-        })
+                publicKey:{
+                    challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6]),   
+                    allowCredentials: [{type: "public-key", id: rawId}]
+                }
+            });
+            
+            console.log(data)
         };
 
         fetchData();
@@ -97,7 +112,6 @@ export default function Login(){
                     { type: "public-key", alg: -257 },
                 ]
             } })
-            setRawId(new Uint8Array((data as PublicKeyCredential).rawId));
             console.log(data)
         //Validate email and password
         try {
