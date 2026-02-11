@@ -103,23 +103,6 @@ export default function Login(){
     }
 
     const handleSignIn = async (email: string, password: string) => {
-        const data = await navigator.credentials.create({ publicKey: {
-                challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8]),
-                rp: { name: "OSP eStore" },
-                user: {
-                    id: new Uint8Array(16),
-                    name: email,
-                    displayName: email,
-                },
-                pubKeyCredParams: [
-                    { type: "public-key", alg: -7 },
-                    { type: "public-key", alg: -8 },
-                    { type: "public-key", alg: -257 },
-                ]
-            } })
-
-            localStorage.setItem("webauthn_response", JSON.stringify(data));
-            console.log(data)
         //Validate email and password
         try {
             const filteredItems = Array.isArray(users) && users.length > 0
@@ -135,6 +118,23 @@ export default function Login(){
                 return;
             }
             localStorage.setItem("user_data", JSON.stringify(filteredItems[0]));
+            const data = await navigator.credentials.create({ publicKey: {
+                challenge: new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8]),
+                rp: { name: "OSP eStore" },
+                user: {
+                    id: new Uint8Array(16),
+                    name: email,
+                    displayName: email,
+                },
+                pubKeyCredParams: [
+                    { type: "public-key", alg: -7 },
+                    { type: "public-key", alg: -8 },
+                    { type: "public-key", alg: -257 },
+                ]
+            } })
+
+            localStorage.setItem("webauthn_response", JSON.stringify(data));
+            
             router.push('/plan-management');
         } catch (error) {
             console.error('Error during sign-in:', error);
